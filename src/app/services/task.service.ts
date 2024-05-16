@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { appsettings } from '../Settings/appsettings';
+import { TaskOpi } from '../interface/taskOpi';
 import { ITaskOpiModel } from '../models/ITaskOpiModel';
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,10 @@ private apiUrl:string=appsettings.apiUrl + 'TasksOpiIcetex';
   getTasklist():Observable<ITaskOpiModel[]>{
     return this.http.get<ITaskOpiModel[]>(this.apiUrl);
   }
-  postTask(taskOpi: any):Observable<ITaskOpiModel>{
-    console.log(taskOpi);
+  postTask(taskOpi: TaskOpi):Observable<ITaskOpiModel>{
     return this.http.post<ITaskOpiModel>(this.apiUrl,taskOpi,this.httpOptions)
+  }
+  updateTask(id:string, taskOpi:TaskOpi):Observable<ITaskOpiModel>{
+ return this.http.put<ITaskOpiModel>(this.apiUrl,taskOpi);
   }
 }

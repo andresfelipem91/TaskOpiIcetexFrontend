@@ -9,5 +9,9 @@ export const routes: Routes = [
   {
     path:'AddTasks',
     component: AgregarTaskComponent
+  },
+  {
+    path:'state/:id',
+    component: ToDoComponent
   }
 ];

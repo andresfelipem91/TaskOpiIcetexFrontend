@@ -1,5 +1,5 @@
 export enum State{
      
-    earring,
-    complete
+    earring=0,
+    complete=1
 }

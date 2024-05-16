@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { TaskOpi } from '../../interface/taskOpi';
 import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-agregar-task',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink,RouterOutlet],
   templateUrl: './agregar-task.component.html',
   styleUrl: './agregar-task.component.css'
 })
@@ -20,6 +21,7 @@ constructor(private fb: FormBuilder,private _taskService:TaskService)
     expirationDate:['', Validators.required],
     detalle:['', Validators.required]
   })
+ 
 }
 addTask(task:any):void{
   const formTask:TaskOpi= {
@@ -28,7 +30,7 @@ addTask(task:any):void{
     isState:0,
     expirationDate:new Date(task.expirationDate).toISOString()
   }
-  console.log(JSON.stringify(formTask, null, 2))
+
   this._taskService.postTask(formTask).subscribe(data=>{
    
     alert("guaradado exitosa mente" )
