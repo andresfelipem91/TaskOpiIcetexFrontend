@@ -1,0 +1,30 @@
+<header class="title">
+   <h1>Add Task</h1>
+</header>
+<section class="container">
+    <form [formGroup]="form" (ngSubmit)="addTask(form.value)">
+        <div>
+            <label>Title:</label>
+            <input type="text" formControlName="title">
+        </div>
+      <div>
+        <label>Priority:</label>
+        <select name="Priority" id="Priority" formControlName="priority">
+            <option value=0>High</option>
+            <option value=1>Half</option>
+            <option value=2>Low</option>
+        </select>
+      </div>
+        <div>
+            <label>ExpirationDate</label>
+            <input type="date" formControlName="expirationDate">
+        </div>
+       <div>
+         <label>Detalle</label>
+       </div>
+       <textarea name="Detalle" cols="32" rows="5" formControlName="detalle"></textarea>
+       <div>
+        <input type="submit" value="Add">
+       </div>
+    </form>
+</section>
