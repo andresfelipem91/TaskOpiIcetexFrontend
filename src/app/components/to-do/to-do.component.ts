@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TaskOpi } from '../../interface/taskOpi';
 import { ITaskOpiModel } from '../../models/ITaskOpiModel';
 import { TaskService } from '../../services/task.service';
 @Component({
@@ -26,16 +25,57 @@ export class ToDoComponent {
       this.tasks=data;
     })
   }
-  editTask(id:string,task:any):void{
-    const formTask:TaskOpi= {
-      ...task,
-      isState:parseInt(task.state)
-      
+  editTask(task: ITaskOpiModel): void {
+    if (task.isState === 0) {
+      task.isState = 1;
+      const UpdateTask = task;
+      this._tasksService.updateTask(UpdateTask).subscribe(()=>{
+        alert("Task updated")
+      })
     }
-    console.log(JSON.stringify(formTask, null, 2))
-    this._tasksService.updateTask(id,formTask).subscribe(data=>{
-      alert('Task updated state');    });
-   }
-   
- 
+    // this._tasksService.updateTask(Update).subscribe( (data) => {
+    //     if (task.isState === 0) {
+    //       task.isState = 1;
+    //       data=task.isState ;
+    //     } else {
+    //       console.error('Respuesta del servidor no válida', task);
+    //     }
+      
+      
+    // });
+  }
+  // editTask(task: ITaskOpiModel): void {
+  //   const taskId = task.id; 
+  //   this._tasksService.updateTask(task).subscribe({
+  //     next: (data) => {
+  //       // Verificar si el estado ha cambiado
+  //       if (data.isState !== task) {
+  //         // Actualizar el estado de la tarea
+  //         task.isState = data.isState;
+  //       }
+  //       console.log('Nuevo estado de la tarea:', task.isState);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error al actualizar la tarea:', err);
+  //     }
+  //   });
+  // }
+  // editTask(task:any):void{
+
+  //   this._tasksService.updateTask(task).subscribe(data=>{
+  //     console.log(!data.isState)
+  //     if(data.isState === task.isState)
+  //       {
+        
+  //         console.log(!data.isState)
+  //         return !data.isState
+  //       }
+  //       console.log(data.isState)
+  //       return data.isState
+  //      });
+       
+    
+
+  //  }
+
 }

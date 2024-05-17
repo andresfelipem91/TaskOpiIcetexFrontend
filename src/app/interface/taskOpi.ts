@@ -2,7 +2,8 @@
 export interface TaskOpi{
     id?: string;
     title: string;
-    state: number;
+    isState: number;
     priority: number;
     expirationDate:Date;
+    detail:string;
 }

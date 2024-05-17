@@ -14,7 +14,7 @@ export class TaskService {
   })
 };
 private http=inject(HttpClient);
-private apiUrl:string=appsettings.apiUrl + 'TasksOpiIcetex';
+private apiUrl:string=appsettings.apiUrl + 'TasksOpiIcetex/';
   constructor() { }
   getTasklist():Observable<ITaskOpiModel[]>{
     return this.http.get<ITaskOpiModel[]>(this.apiUrl);
@@ -22,7 +22,8 @@ private apiUrl:string=appsettings.apiUrl + 'TasksOpiIcetex';
   postTask(taskOpi: TaskOpi):Observable<ITaskOpiModel>{
     return this.http.post<ITaskOpiModel>(this.apiUrl,taskOpi,this.httpOptions)
   }
-  updateTask(id:string, taskOpi:TaskOpi):Observable<ITaskOpiModel>{
- return this.http.put<ITaskOpiModel>(this.apiUrl,taskOpi);
+  updateTask(taskOpi:TaskOpi):Observable<ITaskOpiModel>{
+    //const url = `${this.apiUrl}${taskOpi.id}`;
+ return this.http.put<ITaskOpiModel>(`${this.apiUrl}`,taskOpi);
   }
 }

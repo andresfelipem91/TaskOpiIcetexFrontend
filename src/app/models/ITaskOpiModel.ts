@@ -8,4 +8,5 @@ export interface ITaskOpiModel{
     isState: State;
     priority: Priority;
     expirationDate:Date;
+    detail: string;
 }
