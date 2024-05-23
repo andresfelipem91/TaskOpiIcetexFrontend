@@ -1,16 +1,45 @@
-<header>
-    <div class="slider"></div>
-</header>
-<nav><h1>TODO</h1></nav>
-<section>
-    
+<link href="https://cdn.jsdelivr.net/npm/beercss@3.5.6/dist/cdn/beer.min.css" rel="stylesheet">
 
-    <ul>
-      
-        <li  *ngFor="let task of tasks" ><input type="checkbox"  routerLink="/state/{{task.id}}" 
-            [checked]="task.isState" (change)="editTask(task)"/>{{task.title}}</li>
-    </ul>
+<div class="center">
     
-    <button routerLink="/AddTasks">Agregar</button>
-</section>
+    <div class="espacio">
+        <header>
+           
+            <h1>TODO</h1>
+        <div class="slider"></div>
+      
+    </header>
+    
+    </div>
+    <div>
+        
+        <section>
+            @for(task of tasks; track task){
+                <article class="fill">
+                 <div class="row">
+                     <input type="checkbox"  routerLink="/state/{{task.id}}" 
+                     [checked]="task.isState" (change)="editTask(task)"/>
+                    
+                   <div class="max" [ngClass]="{'checked': task.isState, 'unchecked': !task.isState}">
+                     <h5>{{task.title}}</h5>
+                     <p>{{task.expirationDate | date}}</p>
+                     <p>{{task.isState | Task1 }}</p>
+                     <p>{{task.priority | priorityTask }}</p>
+                   </div>
+                 </div>
+               </article> 
+              
+             }
+           
+             <button routerLink="/AddTasks">Agregar</button>
+            
+        </section>
+       
+        
+    
+    </div>
+    
+</div>
+<app-message [message]="message" [show]="showMessage"></app-message>
+
 
